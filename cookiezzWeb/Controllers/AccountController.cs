@@ -43,12 +43,12 @@ namespace cookiezz.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    bool adminRoleExists = await _roleManager.RoleExistsAsync("Admin");
+                    bool adminRoleExists = await _roleManager.RoleExistsAsync("User");
                     if (!adminRoleExists)
                     {
-                        await _roleManager.CreateAsync(new IdentityRole("Admin"));
+                        await _roleManager.CreateAsync(new IdentityRole("User"));
                     }
-                    await _userManager.AddToRoleAsync(user, "Admin");
+                    await _userManager.AddToRoleAsync(user, "User");
                     return RedirectToAction("Index", "Home");
                 }
                 foreach (var error in result.Errors)
