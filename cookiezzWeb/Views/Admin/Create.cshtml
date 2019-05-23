@@ -1,0 +1,32 @@
+@model cookiezz.Models.ProductViewModel
+
+@{
+    Layout = "~/Views/Admin/_Layout.cshtml"; 
+    ViewBag.Title = "Create";
+}
+<div class="mr-3 ml-3 mb-3 mt-3">
+<form asp-action="Create" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Urun ismi</label>
+        <input class="form-control" asp-for="ProductName"/>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Urun aciklamasi</label>
+        <input class="form-control" asp-for="Description"/>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Urun kategorisi</label>
+        <input class="form-control" asp-for="CategoryId"/>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Urun fiyati</label>
+        <input class="form-control" asp-for="Price"/>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Urun fotografi</label>
+        <input class="form-control" asp-for="Image"/>
+    </div>
+    <input class="btn btn-primary" type="submit"/>
+
+</form>
+</div>

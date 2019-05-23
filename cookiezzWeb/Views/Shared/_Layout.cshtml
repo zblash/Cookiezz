@@ -1,0 +1,160 @@
+﻿
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <title>@ViewData["Title"]</title>
+
+        
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+        <link type="text/css" rel="stylesheet" href="~/css/bootstrap.min.css" />
+        
+        <link type="text/css" rel="stylesheet" href="~/css/slick.css" />
+        <link type="text/css" rel="stylesheet" href="~/css/slick-theme.css" />
+
+        <link type="text/css" rel="stylesheet" href="~/css/nouislider.min.css" />
+
+        <link rel="stylesheet" href="~/css/font-awesome.min.css">
+
+        <link type="text/css" rel="stylesheet" href="~/css/style.css" />
+
+    </head>
+    <body>
+        <header>
+            <div id="top-header">
+                <div class="container">
+                    <ul class="header-links pull-left">
+                    </ul>
+                    <ul class="header-links pull-right">
+                        <li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a><i class="fa fa-user-o"></i>Hesabım</a>
+                            }
+                            else {
+                                <a href="Account/Login"><i class="fa fa-user-o"></i>Hesabım</a>
+                              
+                            }
+                        </li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="header">
+                <div class="container">
+                    <!-- row -->
+                    <div class="row">
+                        <!-- LOGO -->
+                        <div class="col-md-3">
+                            <div class="header-logo">
+                                <a class="logo" asp-controller="Home" asp-action="Index">
+                                    <h1 style="color: snow;margin-top: 15px">Cookiezz</h1>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="header-search">
+                                <form>
+                                    <input class="input" placeholder="Ürün, kategori veya marka ara">
+                                    <button class="search-btn">Ara</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-3 clearfix">
+                            <div class="header-ctn">
+                                <!-- Cart -->
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span>Sepetim</span>
+                                        <div class="qty">1</div>
+                                    </a>
+                                    <div class="cart-dropdown">
+                                        <div class="cart-list">
+                                            <div class="product-widget">
+                                                <div class="product-img">
+                                                    <img src="" alt="">
+                                                </div>
+                                                <div class="product-body">
+                                                    <h3 class="product-name"><a href="#">Kurabiye</a></h3>
+                                                    <h4 class="product-price"><span class="qty">1x</span>50 TL</h4>
+                                                </div>
+                                                <button class="delete"><i class="fa fa-close"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="cart-summary">
+                                            <small>1 Ürün seçildi</small>
+                                            <h5>Toplam: 50 TL</h5>
+                                        </div>
+                                        <div class="cart-btns">
+                                            <a asp-controller="Cart" asp-action="Index">Sepetim</a>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="menu-toggle">
+                                    <a href="#">
+                                        <i class="fa fa-bars"></i>
+                                        <span>Menü</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <nav id="navigation">
+            <div class="container">
+                <div id="responsive-nav">
+                    <ul class="main-nav nav navbar-nav">
+                        <li class="active"><a asp-controller="Home" asp-action="Index">Ana Sayfa</a></li>
+                        @await Component.InvokeAsync("Category")
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li>@Html.ActionLink("Admin", "Index", "Admin", null, null)</li>
+                        }
+                        </ul>
+                </div>
+            </div>
+        </nav>
+        <div id="container">
+        @RenderBody()
+        </div>
+        <footer id="footer">
+            <div class="section">
+            </div>
+            <div id="bottom-footer" class="section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <ul class="footer-payments">
+                                <li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
+                                <li><a href="#"><i class="fa fa-credit-card"></i></a></li>
+                                <li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
+                                <li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
+                                <li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
+                                <li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
+                            </ul>
+                            <span class="copyright">
+                                <script>document.write(new Date().getFullYear());</script> 
+                                </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="~/js/jquery.min.js"></script>
+        <script src="~/js/bootstrap.min.js"></script>
+        <script src="~/js/slick.min.js"></script>
+        <script src="~/js/nouislider.min.js"></script>
+        <script src="~/js/jquery.zoom.min.js"></script>
+    <script src="~/js/main.js"></script>
+    
+    @RenderSection("scripts", required: false)
+    </body>
+</html>

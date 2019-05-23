@@ -1,0 +1,6 @@
+@model IEnumerable<cookiezz.Models.Category>
+
+@foreach (var category in Model)
+{
+    <li>@Html.ActionLink(category.CategoryName, "Store", "Home", new {id = category.Id}, null)</li>
+}
