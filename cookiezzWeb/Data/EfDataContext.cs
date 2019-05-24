@@ -11,6 +11,8 @@ namespace cookiezz.Data
         : base(options)
         {
         }
+
+
         public DbSet<User> Users {get; set;}
         public DbSet<Address> Addres { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
